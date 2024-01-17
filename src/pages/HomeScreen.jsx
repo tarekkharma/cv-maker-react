@@ -1,7 +1,12 @@
 import React from "react";
+import { Header } from "../components";
 
 const HomeScreen = () => {
-  return <div className="">HomeScreen</div>;
+  return (
+    <div className="w-full flex flex-col items-center justify-center">
+      <Header />
+    </div>
+  );
 };
 
 export default HomeScreen;
