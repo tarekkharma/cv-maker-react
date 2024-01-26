@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrash, FaUpload } from "react-icons/fa6";
 import { PuffLoader } from "react-spinners";
 import { toast } from "react-toastify";
-
 import {
   deleteObject,
   getDownloadURL,
@@ -10,9 +9,11 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { db, storage } from "../config/firebase.config";
-import { initialTags } from "../utils/helpers";
+import { adminIds, initialTags } from "../utils/helpers";
 import { deleteDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import useTemplates from "../hooks/useTemplates";
+import useUser from "../hooks/useUser";
+import { useNavigate } from "react-router-dom";
 
 const CreateTemplate = () => {
   const [formData, setFormData] = useState({ title: "", imageURL: null });
@@ -29,6 +30,10 @@ const CreateTemplate = () => {
     isLoading: templatesIsLoading,
     refetch: templatesRefetch,
   } = useTemplates();
+
+  const { data: user, isLoading } = useUser();
+
+  const navigate = useNavigate();
 
   // handling the input field change
   const handleInputChange = (e) => {
@@ -150,6 +155,13 @@ const CreateTemplate = () => {
         });
     });
   };
+
+  // secure admin url
+  useEffect(() => {
+    if (!isLoading && !adminIds.includes(user?.uid)) {
+      navigate("/", { replace: true });
+    }
+  }, [user, isLoading]);
 
   return (
     <div className="w-full px-4 lg:px-10 2xl:px-32 grid grid-cols-1 lg:grid-cols-12">
