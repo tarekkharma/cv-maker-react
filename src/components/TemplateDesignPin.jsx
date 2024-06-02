@@ -10,6 +10,7 @@ import {
 import useUser from "../hooks/useUser";
 import { saveToCollections, saveToFavourites } from "../api";
 import useTemplates from "../hooks/useTemplates";
+import { useNavigate } from "react-router-dom";
 
 const TemplateDesignPin = ({ data, index }) => {
   const { data: user, refetch: userRefetch } = useUser();
@@ -17,6 +18,7 @@ const TemplateDesignPin = ({ data, index }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
+  const navigate = useNavigate();
   const addToCollection = async (e) => {
     e.stopPropagation();
     await saveToCollections(user, data);
@@ -29,7 +31,9 @@ const TemplateDesignPin = ({ data, index }) => {
     temp_refetch();
   };
 
-  const handleRouteNavigation = () => {};
+  const handleRouteNavigation = () => {
+    navigate(`/resumeDetail/${data?._id}`, { replace: true });
+  };
 
   return (
     <motion.div key={data?._id} {...scaleInOut(index)}>
