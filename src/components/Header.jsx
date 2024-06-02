@@ -38,20 +38,20 @@ const Header = () => {
     });
   };
   return (
-    <header className="w-full flex items-center justify-between px-4 py-3 lg:px-8 border-b border-gray-300 bg-bgPrimary z-50 gap-12 sticky top-0">
+    <header className="w-full flex items-center justify-between px-4 py-3 lg:px-8 border-b border-gray-300 bg-bgPrimary z-50 gap-12 sticky top-0 ">
       <Link to={"/"}>
         <img src={Logo} className="w-12 h-auto object-contain" alt="" />
       </Link>
       <div className="flex-1 border border-gray-300 px-4 py-1 rounded-md flex items-center justify-between bg-gray-200">
         <input
-          value={filterData.searchTerm ? filterData.searchTerm : ""}
+          value={filterData?.searchTerm ? filterData?.searchTerm : ""}
           onChange={handleSearchTerm}
           type="text"
           placeholder="Search here..."
           className="flex-1 h-10 bg-transparent text-base font-semibold outline-none border-none"
         />
         <AnimatePresence>
-          {filterData.searchTerm.length > 0 && (
+          {filterData?.searchTerm.length > 0 && (
             <motion.div
               onClick={clearFilter}
               {...FadeInOutWithOpacity}

@@ -59,7 +59,7 @@ const Filters = () => {
               onClick={() => handleFilterValue(item.value)}
               key={item.id}
               className={`border border-gray-300 rounded-md px-6 py-2 cursor-pointer group hover:shadow-md ${
-                filterData.searchTerm === item.value && "bg-gray-300 shadow-md"
+                filterData?.searchTerm === item.value && "bg-gray-300 shadow-md"
               }`}
             >
               <p className="text-sm text-txtPrimary group-hover:text-txtDark whitespace-nowrap">
