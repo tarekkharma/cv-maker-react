@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AnimatePresence, easeInOut, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FadeInOutWithOpacity, scaleInOut } from "../animations";
 import {
   BiFolderPlus,
@@ -19,6 +19,7 @@ const TemplateDesignPin = ({ data, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const navigate = useNavigate();
+
   const addToCollection = async (e) => {
     e.stopPropagation();
     await saveToCollections(user, data);
