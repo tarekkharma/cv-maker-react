@@ -118,7 +118,7 @@ const Header = () => {
                       <div className="w-full flex flex-col items-start gap-8 pt-6">
                         <Link
                           className="text-txtLight hover:text-txtDark text-base whitespace-nowrap"
-                          to={"/profile"}
+                          to={`/profile/${data?.uid}`}
                         >
                           MY Account
                         </Link>
