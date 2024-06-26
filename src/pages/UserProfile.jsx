@@ -41,7 +41,7 @@ const UserProfile = () => {
           alt=""
         />
         <div className="flex flex-col items-center justify-center gap-4">
-          {user?.photoURLs ? (
+          {user?.photoURL ? (
             <React.Fragment>
               <img
                 src={user?.photoURL}
